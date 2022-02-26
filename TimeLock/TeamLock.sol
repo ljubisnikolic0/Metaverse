@@ -6,9 +6,9 @@ interface IERC20 {
     event Transfer(address indexed from, address indexed to, uint256 value);
 }
 
-contract FreeportAdvisorsLock{
+contract FreeportTeamLock{
 	address manager;
-	uint256 public TimeLock = 1705766400; //Unlock at Sun Jan 21 2024 00:00:00 UTC+0800.
+	uint256 public TimeLock = 1737388800; //Unlock at Tue Jan 21 2025 00:00:00 UTC+0800.
 	
     constructor() public {
         manager = msg.sender;
@@ -30,8 +30,8 @@ contract FreeportAdvisorsLock{
 
     function withdrawTokens(address tokenAddr) external onlyManager{
         require(isUnlocked(), "Freeport Lock : Time lock not released.");
-        require(IERC20(tokenAddr).transfer(msg.sender, 5000000 * 10 ** uint(18)));
-		TimeLock += 3153600;
+        require(IERC20(tokenAddr).transfer(msg.sender, 50000000 * 10 ** uint(18)));
+		TimeLock += 31536000;
     }
 
     function isUnlocked() public view returns (bool) {
